@@ -1,0 +1,4 @@
+curl -X POST https://api-b2b.backenster.com/b1/api/v3/translate \
+  -H "Authorization: Bearer a_Ki4HYMmBY1OemRtnzuvH5Rb44WxRNdhIhLbvmSbK9ofaxuypsZmt93g3mQqm1gTijB9eRum1mcRRSZzG" \
+  -H "Content-Type: application/json" \
+  -d '{"from":"en","to":"kn","data":"Hello Bengaluru"}'

@@ -1,0 +1,71 @@
+version: '3.9'
+
+services:
+
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: postgis
+    restart: always
+    environment:
+      POSTGRES_DB: bhuvan
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./init-sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bhuvan-net
+
+  backend:
+    build:
+      context: ./backend
+    container_name: bhuvan-backend
+    restart: always
+    environment:
+      - PGHOST=postgis          
+      - PGUSER=postgres
+      - PGPASSWORD=postgres
+      - PGDATABASE=bhuvan
+      - PGPORT=5432
+      - PORT=4000
+      - API_BASE_URL=http://localhost:4000
+      - LINGVANEX_API_KEY=a_Ki4HYMmBY1OemRtnzuvH5Rb44WxRNdhIhLbvmSbK9ofaxuypsZmt93g3mQqm1gTijB9eRum1mcRRSZzG
+      - NGVANEX_URL=https://api-b2b.backenster.com/b1/api/v3/translate
+    depends_on:
+      postgis:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - bhuvan-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: bhuvan-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_BASE=http://localhost:4000
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: npm start
+    networks:
+      - bhuvan-net
+
+networks:
+  bhuvan-net:
+    driver: bridge

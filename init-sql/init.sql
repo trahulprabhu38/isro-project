@@ -1,0 +1,61 @@
+CREATE EXTENSION IF NOT EXISTS postgis;
+
+CREATE TABLE IF NOT EXISTS places (
+  id SERIAL PRIMARY KEY,
+  name TEXT,
+  category TEXT,
+  geom GEOGRAPHY(Point, 4326)
+);
+
+INSERT INTO places (name, category, geom)
+VALUES
+('Lalbagh Botanical Garden', 'park', ST_GeogFromText('SRID=4326;POINT(77.5853 12.9507)')),
+('Forum Mall', 'shopping', ST_GeogFromText('SRID=4326;POINT(77.6101 12.9345)')),
+('Christ University', 'education', ST_GeogFromText('SRID=4326;POINT(77.6050 12.9344)')),
+('Jayanagar 4th Block', 'market', ST_GeogFromText('SRID=4326;POINT(77.5833 12.9255)')),
+('Banashankari Temple', 'temple', ST_GeogFromText('SRID=4326;POINT(77.5735 12.9303)')),
+('Ragigudda Anjaneya Temple', 'temple', ST_GeogFromText('SRID=4326;POINT(77.5973 12.9305)')),
+('South End Circle', 'junction', ST_GeogFromText('SRID=4326;POINT(77.5802 12.9397)')),
+('Basavanagudi Bull Temple', 'temple', ST_GeogFromText('SRID=4326;POINT(77.5685 12.9408)')),
+('Vivekananda Park', 'park', ST_GeogFromText('SRID=4326;POINT(77.5728 12.9429)')),
+('Ramakrishna Ashrama', 'spiritual', ST_GeogFromText('SRID=4326;POINT(77.5715 12.9410)')),
+('National College', 'education', ST_GeogFromText('SRID=4326;POINT(77.5710 12.9450)')),
+('RV Dental College', 'education', ST_GeogFromText('SRID=4326;POINT(77.5642 12.9201)')),
+('RV Teachers College', 'education', ST_GeogFromText('SRID=4326;POINT(77.5620 12.9211)')),
+('Jayanagar Metro Station', 'transport', ST_GeogFromText('SRID=4326;POINT(77.5911 12.9300)')),
+('JP Nagar Metro Station', 'transport', ST_GeogFromText('SRID=4326;POINT(77.5920 12.9062)')),
+('Brigade Millennium', 'residential', ST_GeogFromText('SRID=4326;POINT(77.5929 12.8955)')),
+('Bangalore Institute of Technology', 'education', ST_GeogFromText('SRID=4326;POINT(77.5639 12.9595)')),
+('Vijaya College', 'education', ST_GeogFromText('SRID=4326;POINT(77.5731 12.9404)')),
+('DVG Road', 'market', ST_GeogFromText('SRID=4326;POINT(77.5730 12.9451)')),
+('South City Mall', 'shopping', ST_GeogFromText('SRID=4326;POINT(77.5969 12.9044)')),
+('Oracle Tech Park', 'office', ST_GeogFromText('SRID=4326;POINT(77.6023 12.9164)')),
+('Honeywell Campus', 'office', ST_GeogFromText('SRID=4326;POINT(77.6010 12.9130)')),
+('IIM Bangalore', 'education', ST_GeogFromText('SRID=4326;POINT(77.5967 12.8961)')),
+('Meenakshi Mall', 'shopping', ST_GeogFromText('SRID=4326;POINT(77.6109 12.8917)')),
+('Apollo Hospital', 'hospital', ST_GeogFromText('SRID=4326;POINT(77.6005 12.9320)')),
+('Jayadeva Hospital', 'hospital', ST_GeogFromText('SRID=4326;POINT(77.6014 12.9264)')),
+('Garuda Mall', 'shopping', ST_GeogFromText('SRID=4326;POINT(77.6111 12.9726)')),
+('Central Mall JP Nagar', 'shopping', ST_GeogFromText('SRID=4326;POINT(77.5913 12.9060)')),
+('RV College of Engineering', 'education', ST_GeogFromText('SRID=4326;POINT(77.4999 12.9236)')),
+('ISKCON South Bangalore', 'temple', ST_GeogFromText('SRID=4326;POINT(77.5740 12.9350)')),
+('RNS Institute of Technology', 'education', ST_GeogFromText('SRID=4326;POINT(77.5120 12.9355)')),
+('Inox JP Nagar', 'cinema', ST_GeogFromText('SRID=4326;POINT(77.5920 12.9073)')),
+('Cinepolis Royal Meenakshi', 'cinema', ST_GeogFromText('SRID=4326;POINT(77.6100 12.8910)')),
+('Kittur Rani Park', 'park', ST_GeogFromText('SRID=4326;POINT(77.5738 12.9450)')),
+('Cool Joint Jayanagar', 'food', ST_GeogFromText('SRID=4326;POINT(77.5840 12.9270)')),
+('Maiyas Restaurant', 'food', ST_GeogFromText('SRID=4326;POINT(77.5830 12.9250)')),
+('Upahara Darshini', 'food', ST_GeogFromText('SRID=4326;POINT(77.5825 12.9260)')),
+('Vidyarthi Bhavan', 'food', ST_GeogFromText('SRID=4326;POINT(77.5720 12.9453)')),
+('SLV Corner', 'food', ST_GeogFromText('SRID=4326;POINT(77.5715 12.9445)')),
+('Basavanagudi Aquatic Centre', 'sports', ST_GeogFromText('SRID=4326;POINT(77.5710 12.9458)')),
+('Ranga Shankara Theatre', 'arts', ST_GeogFromText('SRID=4326;POINT(77.5938 12.9162)')),
+('Banashankari BDA Complex', 'market', ST_GeogFromText('SRID=4326;POINT(77.5739 12.9183)')),
+('BSK Bus Depot', 'transport', ST_GeogFromText('SRID=4326;POINT(77.5715 12.9155)')),
+('Metro Cash and Carry', 'shopping', ST_GeogFromText('SRID=4326;POINT(77.6085 12.9005)')),
+('Kumaraswamy Layout', 'residential', ST_GeogFromText('SRID=4326;POINT(77.5679 12.9043)')),
+('Dayananda Sagar College', 'education', ST_GeogFromText('SRID=4326;POINT(77.5660 12.9090)')),
+('Deve Gowda Petrol Bunk', 'landmark', ST_GeogFromText('SRID=4326;POINT(77.5687 12.9232)')),
+('Indiranagar Metro Station', 'transport', ST_GeogFromText('SRID=4326;POINT(77.6395 12.9783)'));
+
+ALTER TABLE places ADD COLUMN name_kn TEXT;
